@@ -1,14 +1,18 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
+const { serializeUser, use } = require('passport');
 const connection = require('../database/dbconnection');
 // Load User model
 //const User = require('../models/User');
 var user;
 module.exports = function(passport) {
   passport.use(
-    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+    new LocalStrategy({ usernameField: 'username' }, (username, password, done) => {
+
+      console.log(`from passport user is: `)
+      console.log(username)
       // Match user
-      connection.query('SELECT * FROM users WHERE userroll="Inventory Manager" && username = ? ', [email], function(error, results, fields) {
+      connection.query('SELECT * FROM Agency WHERE user_name = ? ', [username], function(error, results, fields) {
         if (error) 
             return done(error);
            
@@ -18,7 +22,9 @@ module.exports = function(passport) {
             return done(null,false,{ message: 'Invalid Credential' });
         }
      //   const isValid=validPassword(password,results[0].hash,results[0].salt);
-        user={userid:results[0].userid,username:results[0].username,password:results[0].password,userroll:results[0].userroll};
+        user={userid:results[0].agency_id, username:results[0].user_name,password:results[0].password};
+        console.log(`passport --> database: `)
+        console.log(user)
         bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
@@ -33,14 +39,20 @@ module.exports = function(passport) {
 
 
   );
+    
   passport.serializeUser(function(user, done) {
+    console.log("serializeUser")
+    console.log(user)
     done(null, user.userid);
   });
 
   passport.deserializeUser(function(userid, done) {
-    connection.query('SELECT * FROM users where userid = ?',[userid], function(error, results) {
-      done(null, results[0]);    
-});
+      connection.query('SELECT * FROM Agency  where agency_id = ?',[userid], function(error, results) {
+        if (error) throw error;
+        console.log(userid)
+        console.log(results)
+        done(null, results[0]);    
+      });
   });
 
 };
