@@ -41,16 +41,12 @@ module.exports = function(passport) {
   );
     
   passport.serializeUser(function(user, done) {
-    console.log("serializeUser")
-    console.log(user)
     done(null, user.userid);
   });
 
   passport.deserializeUser(function(userid, done) {
       connection.query('SELECT * FROM Agency  where agency_id = ?',[userid], function(error, results) {
         if (error) throw error;
-        console.log(userid)
-        console.log(results)
         done(null, results[0]);    
       });
   });

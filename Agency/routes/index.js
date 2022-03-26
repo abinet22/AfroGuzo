@@ -24,8 +24,8 @@ router.get('/logout', (req, res) => {
 
 router.post('/login', (req, res, next) => {
 
-    console.log(`from login router, req.body is`)
-    console.log(req.body)
+    // console.log(`from login router, req.body is`)
+    // console.log(req.body)
 
     passport.authenticate('local', {
         successRedirect: '/dashboard',
@@ -83,10 +83,10 @@ router.post('/register', async (req, res, next) => {
         
             if (error) throw (error)
 
-            console.log("------> Search Results")
-            console.log(result.length)
+            // console.log("------> Search Results")
+            // console.log(result.length)
             if (result.length != 0) {
-            console.log("------> User already exists")
+            // console.log("------> User already exists")
             res.render('register', {
                 error_msg: "User already exists",
                 user: req.user
@@ -98,8 +98,8 @@ router.post('/register', async (req, res, next) => {
             connection.query (insert_query, (error, result)=> {
             
             if (error) throw (error)
-            console.log ("--------> Created new User")
-            console.log(result.insertId)
+            // console.log ("--------> Created new User")
+            // console.log(result.insertId)
             res.render('login', {
                 success_msg: "Successfully created a new User",
                 user: req.user
@@ -116,5 +116,10 @@ router.post('/register', async (req, res, next) => {
    
 }) // end of router.post
 
+router.post('/application_form', async (req, res) => {
+
+    console.log('from application form router')
+    console.log(req.body)
+}) // end of router.post
 
 module.exports = router;

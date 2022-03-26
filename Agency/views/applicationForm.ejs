@@ -377,7 +377,7 @@
                                     <p>Fill all form field to go to next step</p>
                                     <div class="row">
                                         <div class="col-md-12 mx-0">
-                                            <form id="msform" action="/addNewTrainee" method="post">
+                                            <form id="msform" action="/application_form" method="post">
                                                 <!-- progressbar -->
                                                 <ul id="progressbar">
                                                     <li class="active" id="personal"><strong>Personal</strong></li>
@@ -388,11 +388,11 @@
                                                     <li id="coc"><strong>COC</strong></li>
                                                     <li id="medical"><strong>Medical</strong></li>
                                                     <li id="skill"><strong>Skill</strong></li>
-                                                    <li id="experience"><strong>Experience</strong></li>
+                                                    <li id="experience"><strong>Skill...</strong></li>
                                                     <li id="photo"><strong>Photo</strong></li>
                                                 </ul> 
                                                 <!-- fieldsets -->
-                                                <fieldset>
+                                                <fieldset id="personal_info">
                                                     <div class="form-card">
                                                         <h2 class="fs-title">Personal Info</h2>
                                                         <br>
@@ -416,25 +416,20 @@
 
                                                             <input type="tel" name="phone_number" placeholder="Phone No." />
                                                             <input type="email" name="email" placeholder="Email" />
-
-                                                            <div class="row">
-                                                                <label class="col-sm-3 col-form-label">Date of Birth</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="date" name="birthday" class="form-control" required/>
-                                                                </div>
-                                                            </div>
-        
+                                                            <input type="text" placeholder="Date of Birth" onfocus="(this.type='date')" 
+                                                                name="birthday" onblur="if(this.value==''){this.type='text'}" required>
+                                                        
                                                             <select name="gender" class="form-control" required aria-placeholder="">
-                                                                <option>Gender</option>
-                                                                <option>Male</option>
-                                                                <option>Female</option>
+                                                                <option selected="selected">Gender</option>
+                                                                <option value="male">Male</option>
+                                                                <option value="female">Female</option>
                                                             </select>                                                
                                                         </div>
                                                         
                                                     </div>
                                                     <input type="button" name="next" class="btn-primary next action-button" value="Next Step" />
                                                 </fieldset>
-                                                <fieldset>
+                                                <fieldset id="passport_info">
                                                     <div class="form-card">
                                                         <h2 class="fs-title">Passport Info</h2> 
                                                         <br>    
@@ -442,8 +437,12 @@
                                                                 <div class="col-md-6">
                                                                     <input type="text" name="passport_no" placeholder="Passport No." required/>
                                                                     <input type="text" name="place_of_issue" placeholder="Place of Issue" required/>
-                                                                    <input type="text" name="date_of_issue" placeholder="Date of Issue" required/>
-
+                                                                    <input type="text" placeholder="Date of Issue" onfocus="(this.type='date')" 
+                                                                            name="date_of_issue" onblur="if(this.value==''){this.type='text'}" required>
+                                                                    <label class="col-form-label">Nationality</label>
+                                                                    <!-- 
+                                                                        TODO: don't DRY, the list of country must be filled dynamically in the dropdown list.
+                                                                     -->
                                                                     <select id="country" name="nationality" class="form-control" required>
                                                                         <option>Nationality</option>
                                                                         <option value="Ethiopian">Ethiopia</option>
@@ -515,7 +514,7 @@
                                                                         <option value="Equatorial Guinea">Equatorial Guinea</option>
                                                                         <option value="Eritrea">Eritrea</option>
                                                                         <option value="Estonia">Estonia</option>
-                                                                        <option value="Ethiopia">Ethiopia</option>
+                                                                        <option selected="selected">Ethiopia</option>
                                                                         <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
                                                                         <option value="Faroe Islands">Faroe Islands</option>
                                                                         <option value="Fiji">Fiji</option>
@@ -698,9 +697,14 @@
                                                                 <div class="col-md-6">
                                                                     <input type="text" name="passport_type" placeholder="Passport Type" required/>
                                                                     <input type="text" name="place_of_birth" placeholder="Place of Birth" required/>
-                                                                    <input type="text" name="expiry_date" placeholder="Date of Expiry" required/>
+                                                                    <input type="text" placeholder="Expiry Date" onfocus="(this.type='date')" 
+                                                                            name="expiry_date" onblur="if(this.value==''){this.type='text'}" required>
+                                                                    <label class="col-form-label">Other Nationality</label>
+                                                                    <!-- 
+                                                                        TODO: don't DRY, the list of country must be filled dynamically in the dropdown list.
+                                                                     -->
                                                                     <select id="country" name="other_nationality" class="form-control">
-                                                                        <option>Other Nationality</option>
+                                                                        <option selected="selected"></option>
                                                                         <option value="Afghanistan">Afghanistan</option>
                                                                         <option value="Åland Islands">Åland Islands</option>
                                                                         <option value="Albania">Albania</option>
@@ -954,8 +958,42 @@
 
                                                         <div class="row">                                                        
                                                                 <div class="col-md-6">
+                                                                    
+                                                                    
+                                                                    <label class="col-form-label">Religion</label>
+                                                                    <select name="religion" class="form-control">
+                                                                        <option selected="selected"></option>
+                                                                        <option value="islam">Islam</option>
+                                                                        <option value="orthodox">Orthodox</option>
+                                                                        <option value="christianity">Christianity</option>
+                                                                        <option value="catholic">Catholic</option>
+                                                                        <option value="protestant">Protestant</option>
+                                                                        <option value="buddhism">Buddhism</option>
+                                                                        <option value="hinduism">Hinduism</option>
+                                                                        <option value="sikhism">Sikhism</option>                                                                       
+                                                                    </select>
+
+                                                                    <!-- TODO: add a conditional text field to accept a custom occupation type 
+                                                                    which is not included in the select field.  -->
+                                                                    <label class="col-form-label">Occupation</label>
+                                                                    <select name="occupation" id="occupation" class="form-control">
+                                                                        <option selected="selected"></option>
+                                                                        <option value="nanny">NANNY</option>
+                                                                        <option value="nurse">NURSE</option>
+                                                                        <option value="cooker">COOKER</option>
+                                                                        <option value="driver">DRIVER</option>
+                                                                        <option value="house worker">HOUSE WORKER</option>
+                                                                        <option value="cooker">COOKER</option>
+                                                                        <option value="nurse">NURSE</option>
+                                                                        <option value="waiter">WAITER</option>
+                                                                        <option value="physiotherapist">PHYSIOTHERAPIST</option>
+                                                                        <option value="sales">SALES</option>
+                                                                        <option value="other">OTHER</option>
+                                                                    </select>
+                                                                                
+
                                                                     <label class="col-form-label">Education</label>
-                                                                    <select name="education_bg" class="form-control">
+                                                                    <select name="education" class="form-control">
                                                                         <option>ELEMENTARY</option>
                                                                         <option>JUNIOR SECONDARY</option>
                                                                         <option selected="selected">SECONDARY LEVEL</option>
@@ -969,279 +1007,333 @@
                                                                         <option>Non-Formal Education</option>
                                                                         <option>Other</option>
                                                                     </select>
-                                                                    <input type="text" name="place_of_issue" placeholder="Place of Issue" required/>
-                                                                    <input type="text" name="date_of_issue" placeholder="Date of Issue" required/>
-                                                                
+                                                                    <br>
+                                                                    <input type="text" placeholder="Year Completed" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+                                                                    <input type="text" name="city" placeholder="City"  />
+                                                                    <input type="text" name="woreda" placeholder="Woreda"  />
+                                                                               
                                                                 </div> 
                                                                 <div class="col-md-6">
+
+    
                                                                     <label class="col-form-label">Passport Type</label>
-                                                                    <select name="education_bg" class="form-control">
+                                                                    <select name="passport_type" class="form-control">
                                                                         <option selected="selected">Normal</option>
                                                                         <option>Diplomatic</option>
                                                                         <option>Special</option>
                                                                         <option>Haji Cert</option>
                                                                         <option>Travel Cert</option>
                                                                     </select>
-                                                                    <input type="text" name="place_of_birth" placeholder="Place of Birth" required/>
-                                                                    <input type="text" name="expiry_date" placeholder="Date of Expiry" required/>
-        
+
+                                                                    <label class="col-form-label">Marital Status</label>
+                                                                    <select name="marital_status" id="marital_status" class="form-control">
+                                                                        <option selected="selected"></option>
+                                                                        <option value="married">Married</option>
+                                                                        <option value="divorced">Divorced</option>
+                                                                        <option value="widow">Widow</option>
+                                                                        <option value="other">Other</option>
+                                                                    </select>
+                                                                    <br>
+                                                                    <br>
+                                                                    <input type="text" name="home_address" placeholder="Home Address" />
+                                                                    <input type="text" name="sub_city" placeholder="Sub City" required/>
+                                                                    <input type="text" name="region" placeholder="Region" required/>
+                                                                    <input type="text" name="shelf_no" placeholder="Shelf No." required/>
                                                                 </div>
                                                         </div>
-
-
-
-                                                        <input type="tel" name="phoneNumber_1" placeholder="Primary Phone No." required/> 
-                                                        <input type="tel" name="phoneNumber_2" placeholder="Secondary Phone No." required/>
-                                                        <input type="email" name="email" placeholder="Email" required/>
-                                                        <input type="text" name="addresses" placeholder="City and State" required/>  
-                                                        <input type="text" name="place" placeholder="Postal code/Place" required/>
 
                                                     </div> 
                                                     <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> 
                                                     <input type="button" name="next" class="next action-button" value="Next Step" />
                                                 </fieldset>
-                                                <fieldset>
+                                                <fieldset id="visa_info">
                                                     <div class="form-card">
-                                                        <h2 class="fs-title">Outcome</h2>
-                                                        <table class="table table-borderless table-condensed" id="outcome">
-                                                            <tbody>
-                                                                <tr>
-                                                                <td colspan="8">Dropout</td>
-                                                                <td align="right">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" 
-                                                                                id="checkbox1" name="dropout" value="1">
-                                                                    </div>
-                                                                </td>
-                                                                <td align="right">
-                                                                    <input type="date" name="dropout_date">
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                <td colspan="8">Graduated</td>
-                                                                <td align="right">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" 
-                                                                                id="checkbox2" name="graduated" value="1">
-                                                                    </div>
-                                                                </td>
-                                                                <td align="right">
-                                                                    <input type="date" name="graduated_date">
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                <td colspan="8">Placed in apprenticeship/OJT</td>
-                                                                <td align="right">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" 
-                                                                                id="checkbox3" name="placedInApp" value="1">
-                                                                    </div>
-                                                                </td>
-                                                                <td align="right">
-                                                                    <input type="date" name="placedInApp_date">
-                                                                </td>
-                                                                
-                                                                </tr>
-                                                                <tr>
-                                                                <td colspan="8">Continued in other study</td>
-                                                                <td align="right">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" 
-                                                                                id="checkbox4" name="continued_study" value="1">
-                                                                    </div>
-                                                                </td>
-                                                                <td align="right">
-                                                                    <input type="date" name="continued_study_date">
-                                                                </td>
-                                                                
-                                                                </tr>
-                                                                <tr>
-                                                                <td colspan="8">Self-employed</td>
-                                                                <td align="right">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" 
-                                                                                id="checkbox5" name="self_employed" value="1">
-                                                                    </div>
-                                                                </td>
-                                                                <td align="right">
-                                                                    <input type="date" name="self_employed_date">
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                <td colspan="8">Employed with in six month/in relevant job</td>
-                                                                <td align="right">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" 
-                                                                                id="checkbox6" name="employed_six_months" value="1">
-                                                                    </div>
-                                                                </td>
-                                                                <td align="right">
-                                                                    <input type="date" name="employed_six_months_date">
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                <td colspan="8" align="left">Employed in fair Labor Conditions</td>
-                                                                <td align="right">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" 
-                                                                                id="checkbox7" name="employed_in_fl" value="1">
-                                                                    </div>
-                                                                </td>
-                                                                <td align="right">
-                                                                    <input type="date" name="employed_in_fl_date">
-                                                                </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        
+                                                        <h2 class="fs-title">Visa Info</h2>
+                                                        <br>
+                                                        <input type="text" name="visa_no" placeholder="Visa No." />
+                                                        <label class="col-form-lable"> Visa Type</label>
+                                                        <!-- 
+                                                            TODO: conditional text field for other option, let user to
+                                                            insert type of visa other than stated in the select field
+                                                         -->
+                                                        <select name="visa_type" id="visa_type" class="form-control">
+                                                            <option value="commercial">Commercial Visit</option>
+                                                            <option value="diplomatic">Diplomatic</option>
+                                                            <option value="Educational">Educational</option>
+                                                            <option value="escort">Escort Visa</option>
+                                                            <option value="extend">Extend Return</option>
+                                                            <option value="family">Family Visit</option>
+                                                            <option value="government">Government Visit</option>
+                                                            <option value="hajj">Hajj</option>
+                                                            <option value="medical">Medical</option>
+                                                            <option value="merchandise">Merchandise Delivery</option>
+                                                            <option value="organization">Missions and Organizations Visit</option>
+                                                            <option value="personal">Personal Visit</option>
+                                                            <option value="resident">Resident</option>
+                                                            <option value="seasonal">Seasonal Work</option>
+                                                            <option value="special">Special</option>
+                                                            <option value="temporary">Temporary work</option>
+                                                            <option value="tourism">Tourism</option>
+                                                            <option value="transit">Transit</option>
+                                                            <option value="umrah">Umrah</option>
+                                                            <option selected="selected">Work</option>
+                                                            <option value="other">Other</option>
+                                                        </select>
+                                                        <br>
+                                                        <input type="text" placeholder="Signed on" onfocus="(this.type='date')" 
+                                                        name="visa_sign_date" onblur="if(this.value==''){this.type='text'}" >
+                                                        <input type="text" name="salary" placeholder="Salary" />
+                                                        <input type="text" name="shelf_no" placeholder="Shelf No." />
+                                                        <label class="col-form-label">Port of Entry</label>
+                                                        <!-- 
+                                                            TODO: conditional text field for other option, let user to
+                                                            insert port of entry other than stated in the select field
+                                                         -->
+                                                        <select name="port_of_entry" class="form-control">  
+                                                            <option value="jeddah">Jeddah</option>
+                                                            <option value="dhahran">Dhahran</option>
+                                                            <option value="al-madinah">Al-Madinah</option>
+                                                            <option value="dammam">Dammam</option>
+                                                            <option value="doha">Doha</option>
+                                                            <option value="amman">Amman</option>
+                                                            <option selected="select">Dubai</option>
+                                                            <option value="ajman">Ajman</option>
+                                                            <option value="other">other</option>
+                                                        </select>
+                                                        <br>
+                                                        <input type="text" name="port_of_entry_remark" placeholder="Remark">
                                                     </div> 
                                                     <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                                                     <input type="button" name="next" class="next action-button" value="Next Step" />
                                                     <!-- <input type="button" name="make_payment" class="next action-button" value="Confirm" /> -->
                                                 </fieldset>
-                                                <fieldset>
+                                                <fieldset id="sponsor_info">
                                                     <div class="form-card">
-                                                        <h2 class="fs-title">Extra Data</h2>
-                                                        
-                                                            <div class="row">
-                                                                <label class="col-sm-3 col-form-label" style="padding-left:20;">Date of Intake</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="date" name="dateOfIntake" class="form-control"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <label class="col-sm-3 col-form-label" style="padding-left:20;">Batch</label>
-                                                                <div class="col-sm-9">
-                                                                    <select name="batchOf" class="form-control">
-                                                                        <option>2020 C</option>
-                                                                        <option>2020 B</option>
-                                                                    </select>
-                                                                </div>              
-                                                            </div>
-                                                            <div class="row " style="margin-top: 20;">
-                                                                <label class="col-sm-3 col-form-label" style="padding-left:20;">Class</label>
-                                                                <div class="col-sm-9">
-                                                                    <select name="classOf" class="form-control">
-                                                                        <option>Short T10</option>
-                                                                        <option>Short T11</option>
-                                                                    </select>
-                                                                </div>              
-                                                            </div>
-                                                            <div class="row" style="margin-top: 20;">
-                                                                <label class="col-sm-3 col-form-label" style="padding-left:20;">Training Category</label>
-                                                                <div class="col-sm-9">
-                                                                    <select name="trainingCategory" class="form-control">
-                                                                        <option>Electricity</option>
-                                                                        <option>Furniture</option>
-                                                                        <option>Garment</option>
-                                                                        <option>Hotel</option>
-                                                                        <option>HDECoVA</option>
-                                                                        <option>ICT</option>
-                                                                        <option>Metal</option>
-                                                                        <option>Secretary</option>
-                                                                        <option>Urban Agriculture</option>
+                                                        <h2 class="fs-title">Sponsor Info</h2>
+                                                        <br>
+                                                        <input type="text" name="sponsor_name" placeholder="Sponsor Name" />
+                                                        <input type="text" name="sponsor_name_arabic" placeholder="Sponsor Name Arabic" />
+                                                        <input type="text" name="sponsor_id" placeholder="Sponsor ID" />
+                                                        <input type="text" name="sponsor_address" placeholder="Sponsor Address" />
+                                                        <input type="email" name="sponsor_email" placeholder="Sponsor Email" />
+                                                        <input type="tel" name="sponsor_phone" placeholder="Sponsor Phone No." />
 
-                                                                    </select>
-                                                                </div>              
-                                                            </div>
-                                                            <div class="row " style="margin-top: 20;">
-                                                                <div class="col-sm-6">
-                                                                    <input type="text" name="incomeAtStart" class="form-control" placeholder="Income Start of Training">
-                                                                </div>  
-                                                                <div class="col-sm-6">
-                                                                    <input type="date" name="incomeAtStart_date" class="form-control" />
-                                                                </div>             
-                                                            </div>
-                                                            <div class="row " style="margin-top: 20;">
-                                                                <div class="col-sm-6">
-                                                                    <input type="text" name="incomeAtEnd" class="form-control" placeholder="Income End of Training">
-                                                                </div>  
-                                                                <div class="col-sm-6">
-                                                                    <input type="date" name="incomeAtEnd_date" class="form-control" />
-                                                                </div>             
-                                                            </div>
-                                                            <div class="row " style="margin-top: 20;">
-                                                                <div class="col-sm-6">
-                                                                    <input type="text" name="measuringPoint1" class="form-control" placeholder="Extra Measuring Point 1">
-                                                                </div>  
-                                                                <div class="col-sm-6">
-                                                                    <input type="date" name="measuringPoint1_date" class="form-control" />
-                                                                </div>             
-                                                            </div>
-                                                            <div class="row " style="margin-top: 20;">
-                                                                <div class="col-sm-6">
-                                                                    <input type="text" name="measuringPoint2" class="form-control" placeholder="Extra Measuring Point 2">
-                                                                </div>  
-                                                                <div class="col-sm-6">
-                                                                    <input type="date" name="measuringPoint2_date" class="form-control" />
-                                                                </div>             
-                                                            </div><div class="row " style="margin-top: 20;">
-                                                                <div class="col-sm-6">
-                                                                    <input type="text" name="measuringPoint3" class="form-control" placeholder="Extra Measuring Point 3">
-                                                                </div>  
-                                                                <div class="col-sm-6">
-                                                                    <input type="date" name="measuringPoint3_date" class="form-control" />
-                                                                </div>             
-                                                            </div>
-                                                        </div>
+                                                        <label class="col-form-label">Office Abroad</label>
+                                                        <select name="office_abroad" class="form-control">
+                                                            <option selected="selected"></option>
+                                                            <option value="julfare_domestic_WS">Julfare Domestic Workers Service</option>
+                                                        </select>
+                                                            
+                                                    </div>
                                                     <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> 
                                                     <input type="button" name="next" class="next action-button" value="Next Step" />
                                                 </fieldset>
-                                                <fieldset>
+                                                <fieldset id="relative_info">
                                                     <div class="form-card">
-                                                        <h2 class="fs-title">Detail Personal Info</h2>
-                                                        <div class="row form-group" style="margin-top: 20;">
-                                                            <label class="col-sm-3" for="experience">Experience</label>
-                                                            <div class="col-sm-9"> 
-                                                                <textarea class="form-control" name="experience" rows="3"></textarea>
-                                                            </div>
+                                                        <h2 class="fs-title">Relative Info</h2>
+                                                        <br>
+                                                        <input type="text" name="relative_name" placeholder="Relative Full Name" />
+                                                        <input type="tel" name="relative_phone_no" placeholder="Phone No." />
+                                                        <input type="tel" name="relative_2nd_phone_no" placeholder="2nd Phone No." />
+                                                        <input type="email" name="relative_email" placeholder="Email" />
+                                                        <input type="text" name="relative_address" placeholder="Address" />
+                                                        <input type="text" name="relative_city" placeholder="City" />
+                                                        <input type="text" name="relative_zone" placeholder="Zone/Subcity" />
+                                                        <input type="text" name="relative_woreda" placeholder="Woreda" />
+                                                        <input type="text" name="relative_HN" placeholder="House No." />
+                                                        <input  type="text" placeholder="Date of Birth" onfocus="(this.type='date')" 
+                                                                name="relative_DOB" onblur="if(this.value==''){this.type='text'}" required>
+                                                        <select name="relative_gender" class="form-control">
+                                                                <option selected="selected">Gender</option>
+                                                                <option value="male">Male</option>
+                                                                <option value="female">Female</option>
+                                                        </select>
+                                                    </div>
+                                                    <button type="button" name="previous" class="previous action-button-previous">Previous</button> 
+                                                    <button type="submit" name="submit" class="next action-button">Submit</button>
+                                                </fieldset>
+                                                <fieldset id="coc_info">
+                                                    <div class="form-card">
+                                                        <h2 class="fs-title">COC Info</h2>
+                                                        <br>
+                                                        <input type="text" name="coc_center" placeholder="COC center name" />
+                                                        <input type="text" name="coc_center_address" placeholder="COC center address" />
+                                                        <input type="text" name="training_center" placeholder="Training Center" />
+                                                        <input type="text" name="training_type" placeholder="Training Type" />
+                                                        <input type="text" name="training_center_address" placeholder="Training center address" />
+                                                    </div>
+                                                    <button type="button" name="previous" class="previous action-button-previous">Previous</button> 
+                                                    <button type="submit" name="submit" class="next action-button">Submit</button>
+                                                </fieldset>
+                                                <fieldset id="medical_info">
+                                                    <div class="form-card">
+                                                        <h2 class="fs-title">Medical and Other Info</h2>
+                                                        <br>
+                                                        <input  type="text" placeholder="Medical Date" onfocus="(this.type='date')" 
+                                                        name="medical_date" onblur="if(this.value==''){this.type='text'}">
+                                                        <label class="col-form-lable">Medical Place</label>
+                                                        <select name="medical_place" class="form-control">
+                                                            <option selected="selected">Arsho</option>
+                                                            <option value="bethanya">Bethanya</option>
+                                                            <option value="hallelujah">Hallelujah</option>
+                                                            <option value="st_gabriel">KT ST. Gabriel</option>
+                                                            <option value="sante">Sante</option>
+                                                            <option value="zenbaba">Zenbaba</option>
+                                                            <option value="washington">Washington</option>
+                                                            <option value="bethzatha">Bethzatha</option>
+                                                            <option value="al_afiya">Al-Afiya</option>
+                                                            <option value="toz">TOZ</option>
+                                                            <option value="wosene">Wosene</option>
+                                                            <option value="zak">ZAK</option>
+                                                            <option value="al_borg">Al-Borg</option>
+                                                            <option value="vision">Vision</option>
+                                                            <option value="amin">Amin</option>
+                                                            <option value="abnet">Abnet</option>
+                                                            <option value="lagehar">Legehar</option>
+                                                        </select>
+                                                        <br>
+                                                        <label class="col-form-lable">Forensic</label>
+                                                        <select name="forensic" class="form-control">
+                                                            <option selected=""></option>
+                                                            <option value="free">Free</option>
+                                                        </select>
+                                                        <br>
+                                                        <input  type="text" name="insurance_no" placeholder="Insurance No.">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="two_photo" value="1">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                              Two Photograph
+                                                            </label>
                                                         </div>
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-3" for="experience">Talent</label>
-                                                            <div class="col-sm-9"> 
-                                                                <textarea class="form-control" rows="3" name="talent"></textarea>
-                                                            </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="id_card" id="flexCheckDefault" value="1">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                              Id Card
+                                                            </label>
                                                         </div>
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-3" for="experience">General Info</label>
-                                                            <div class="col-sm-9"> 
-                                                                <textarea class="form-control" rows="3" name="generalInfo"></textarea>
-                                                            </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="relative_id_card" value="1" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                Relative Id Card
+                                                            </label>
                                                         </div>
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-3" for="experience">Health Info</label>
-                                                            <div class="col-sm-9"> 
-                                                                <textarea class="form-control" rows="3" name="healthInfo"></textarea>
-                                                            </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="pre_departure_card" value="1" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                Pre-Departure Card
+                                                            </label>
                                                         </div>
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-3" for="experience">Behavior Info</label>
-                                                            <div class="col-sm-9"> 
-                                                                <textarea class="form-control" rows="3" name="behaviorInfo"></textarea>
-                                                            </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="education_certfication" value="1" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                8th or above Certificate
+                                                            </label>
                                                         </div>
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-3" for="experience">Info from visits</label>
-                                                            <div class="col-sm-9"> 
-                                                                <textarea class="form-control" rows="3" name="visitInfo"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-3" for="experience">Job/Apprenticeship Info</label>
-                                                            <div class="col-sm-9"> 
-                                                                <textarea class="form-control" rows="3" name="jobInfo"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        
+                                                    </div>
+                                                    <button type="button" name="previous" class="previous action-button-previous">Previous</button> 
+                                                    <button type="submit" name="submit" class="next action-button">Submit</button>
+                                                </fieldset>
+                                                <fieldset id="skill_info">
+                                                    <div class="form-card">
+                                                        <h2 class="fs-title">Skill and Experience</h2>
+                                                        <br>
+                                                        <label class="col-form-lable">English</label>
+                                                        <select name="en_skill" id="en_skill" class="form-control">
+                                                            <option></option>
+                                                            <option value="poor">POOR</option>
+                                                            <option value="fair">FAIR</option>
+                                                            <option value="good">GOOD</option>
+                                                        </select>
+                                                        <br>
+                                                        <label for="col-form-lable">Arabic</label>
+                                                        <select name="arabic_skill" id="arabic_skill" class="form-control">
+                                                            <option></option>
+                                                            <option value="poor">POOR</option>
+                                                            <option value="fair">FAIR</option>
+                                                            <option value="good">GOOD</option>
+                                                        </select>
+                                                        <br>
+                                                        <input type="text" name="local_experiance" placeholder="Experience Local" />
+                                                        <input type="text" name="abroad_experiance" placeholder="Experience Abroad" />
+                                                        <input type="text" name="works_in" placeholder="Works In" />
+                                                        <input type="text" name="number_of_childeren" placeholder="Number of Childern" />
+                                                        <input type="text" name="height" placeholder="Height" />
+                                                        <input type="text" name="weight" placeholder="Weight" />
 
                                                     </div>
                                                     <button type="button" name="previous" class="previous action-button-previous">Previous</button> 
-                                        
                                                     <button type="submit" name="submit" class="next action-button">Submit</button>
                                                 </fieldset>
-                                                <fieldset>
+                                                <fieldset id="experiance_info">
                                                     <div class="form-card">
-                                                        <h2 class="fs-title text-center">Success !</h2> <br><br>
+                                                        <h2 class="fs-title">Skill and Experience</h2>
+                                                        <br>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="ironing" value="1">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                              Ironing
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="cooking" id="flexCheckDefault" value="1">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                              Cooking
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="sewing" value="1" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                Sewing
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="b_sitting" value="1" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                Baby Sitting
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="child_care" value="1" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                Chilid care
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="arab_cooking" value="1" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                Arabian cooking
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="cleaing" value="1" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                Cleaning
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="washing" value="1" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                Washing
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" name="previous" class="previous action-button-previous">Previous</button> 
+                                                    <button type="submit" name="submit" class="next action-button">Submit</button>
+                                                </fieldset>
+                                                <fieldset id="photo">
+                                                    <div class="form-card">
+                                                        <h2 class="fs-title">Upload Photo</h2>
+                                                        <br>
+                                                        
+                                                    </div>
+                                                    <button type="button" name="previous" class="previous action-button-previous">Previous</button> 
+                                                    <button type="submit" name="submit" class="next action-button">Submit</button>
+                                                </fieldset>
+                                                <fieldset id="success_msg">
+                                                    <div class="form-card">
+                                                        <h2 class="fs-title text-center">Success !</h2> 
+                                                        <br>
+                                                        <br>
                                                         <div class="row justify-content-center">
                                                             <div class="col-3"> 
                                                                 <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image"> 
@@ -1329,101 +1421,10 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/new-application.js"></script>
     
     <script type="text/javascript">
-        $(document).ready(function(){
-
-        var current_fs, next_fs, previous_fs; //fieldsets
-        var opacity;
-
-        $(".next").click(function(){
-
-            current_fs = $(this).parent();
-            next_fs = $(this).parent().next();
-
-            //Add Class Active
-            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-            //show the next fieldset
-            next_fs.show();
-            //hide the current fieldset with style
-            current_fs.animate({opacity: 0}, {
-                step: function(now) {
-                // for making fielset appear animation
-                opacity = 1 - now;
-
-                current_fs.css({
-                'display': 'none',
-                'position': 'relative'
-                });
-                next_fs.css({'opacity': opacity});
-                },
-                duration: 600
-            });
-        });
-
-        $(".previous").click(function(){
-
-            current_fs = $(this).parent();
-            previous_fs = $(this).parent().prev();
-
-            //Remove class active
-            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
-            //show the previous fieldset
-            previous_fs.show();
-
-            //hide the current fieldset with style
-            current_fs.animate({opacity: 0}, {
-                step: function(now) {
-                // for making fielset appear animation
-                opacity = 1 - now;
-
-                current_fs.css({
-                'display': 'none',
-                'position': 'relative'
-                });
-                previous_fs.css({'opacity': opacity});
-                },
-                duration: 600
-                });
-            });
-
-            $('.radio-group .radio').click(function(){
-            $(this).parent().find('.radio').removeClass('selected');
-            $(this).addClass('selected');
-        });
-
-        $(".submit").click(function(){
-
-            console.log("Data Submitted")
-            
-            current_fs = $(this).parent();
-            next_fs = $(this).parent().next();
-
-            //Add Class Active
-            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-            //show the next fieldset
-            next_fs.show();
-            //hide the current fieldset with style
-            current_fs.animate({opacity: 0}, {
-                step: function(now) {
-                // for making fielset appear animation
-                opacity = 1 - now;
-
-                current_fs.css({
-                'display': 'none',
-                'position': 'relative'
-                });
-                next_fs.css({'opacity': opacity});
-                },
-                duration: 600
-            });
-            
-        })
-
-        });
+       
     </script>
     <!-- End custom js for this page-->
 
