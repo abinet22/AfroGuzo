@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+   
     const Agency = sequelize.define("Agency", {
         id: {
             type: DataTypes.UUID,
@@ -6,7 +7,27 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             allowNull: false
         },
-        user_name: {
+        agency_name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }, 
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        phone_number: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        subscription_type: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        is_active: {
             type: DataTypes.STRING,
             allowNull: false
         }
@@ -23,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
         Agency.hasOne(models.Profile, {
             // deletes all applications created by this user 
             onDelete: "cascade"  
-        })
+        });
     };
 
     return Agency;

@@ -17,11 +17,11 @@ const app = express();
 // Passport authentication Config
 require('./config/passport')(passport);
 
-var corsOptions = {
-    origin: "http://localhost:8081"
-  };
+// var corsOptions = {
+//     origin: "http://localhost:8081"
+//   };
   
-app.use(cors(corsOptions));
+app.use(cors());
 
 // // connect to mysql
 // connection

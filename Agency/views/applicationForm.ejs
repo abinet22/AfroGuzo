@@ -377,7 +377,7 @@
                                     <p>Fill all form field to go to next step</p>
                                     <div class="row">
                                         <div class="col-md-12 mx-0">
-                                            <form id="msform" action="/application_form" method="post">
+                                            <form id="msform" action="/api/applications/new" method="post">
                                                 <!-- progressbar -->
                                                 <ul id="progressbar">
                                                     <li class="active" id="personal"><strong>Personal</strong></li>
@@ -391,6 +391,7 @@
                                                     <li id="experience"><strong>Skill...</strong></li>
                                                     <li id="photo"><strong>Photo</strong></li>
                                                 </ul> 
+
                                                 <!-- fieldsets -->
                                                 <fieldset id="personal_info">
                                                     <div class="form-card">
@@ -1008,7 +1009,7 @@
                                                                         <option>Other</option>
                                                                     </select>
                                                                     <br>
-                                                                    <input type="text" placeholder="Year Completed" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+                                                                    <input type="text" name="year_completed" placeholder="Year Completed" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
                                                                     <input type="text" name="city" placeholder="City"  />
                                                                     <input type="text" name="woreda" placeholder="Woreda"  />
                                                                                
@@ -1083,7 +1084,6 @@
                                                         <input type="text" placeholder="Signed on" onfocus="(this.type='date')" 
                                                         name="visa_sign_date" onblur="if(this.value==''){this.type='text'}" >
                                                         <input type="text" name="salary" placeholder="Salary" />
-                                                        <input type="text" name="shelf_no" placeholder="Shelf No." />
                                                         <label class="col-form-label">Port of Entry</label>
                                                         <!-- 
                                                             TODO: conditional text field for other option, let user to
@@ -1224,7 +1224,7 @@
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" name="education_certfication" value="1" id="flexCheckDefault">
+                                                            <input class="form-check-input" type="checkbox" name="education_certification" value="1" id="flexCheckDefault">
                                                             <label class="form-check-label" for="flexCheckDefault">
                                                                 8th or above Certificate
                                                             </label>
@@ -1253,10 +1253,10 @@
                                                             <option value="good">GOOD</option>
                                                         </select>
                                                         <br>
-                                                        <input type="text" name="local_experiance" placeholder="Experience Local" />
-                                                        <input type="text" name="abroad_experiance" placeholder="Experience Abroad" />
+                                                        <input type="text" name="local_experience" placeholder="Experience Local" />
+                                                        <input type="text" name="abroad_experience" placeholder="Experience Abroad" />
                                                         <input type="text" name="works_in" placeholder="Works In" />
-                                                        <input type="text" name="number_of_childeren" placeholder="Number of Childern" />
+                                                        <input type="text" name="number_of_children" placeholder="Number of Childern" />
                                                         <input type="text" name="height" placeholder="Height" />
                                                         <input type="text" name="weight" placeholder="Weight" />
 
@@ -1305,7 +1305,7 @@
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" name="cleaing" value="1" id="flexCheckDefault">
+                                                            <input class="form-check-input" type="checkbox" name="cleaning" value="1" id="flexCheckDefault">
                                                             <label class="form-check-label" for="flexCheckDefault">
                                                                 Cleaning
                                                             </label>
@@ -1324,7 +1324,8 @@
                                                     <div class="form-card">
                                                         <h2 class="fs-title">Upload Photo</h2>
                                                         <br>
-                                                        
+                                                        // TODO: Upload photo based on diffrent size - save it the file system and it's name or id and 
+                                                        // file type of data base / or save it on the data base. 
                                                     </div>
                                                     <button type="button" name="previous" class="previous action-button-previous">Previous</button> 
                                                     <button type="submit" name="submit" class="next action-button">Submit</button>
