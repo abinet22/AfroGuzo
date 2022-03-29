@@ -274,7 +274,19 @@ module.exports = (sequelize, DataTypes) => {
         },
         washing: {
             type: DataTypes.STRING,
-        }
+        },
+        imageType: {
+            type: DataTypes.STRING,
+        },
+        imageName: {
+            type: DataTypes.STRING,
+        },
+        imagePath: {
+            type: DataTypes.STRING,
+        },
+        imageData: {
+            type: DataTypes.BLOB("long"),
+        },
 
     }); // end of table column definition 
 

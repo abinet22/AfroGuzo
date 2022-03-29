@@ -17,10 +17,7 @@ const app = express();
 // Passport authentication Config
 require('./config/passport')(passport);
 
-// var corsOptions = {
-//     origin: "http://localhost:8081"
-//   };
-  
+// let the app use cors
 app.use(cors());
 
 // // connect to mysql
@@ -100,7 +97,7 @@ app.use('/api/profiles', profileRoutes );
 const applicationRoutes = require("./routes/application");
 app.use('/api/applications', applicationRoutes);
 
-// initialize out app
+// initialize our app
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log(`listening at: http://localhost:${PORT}`)

@@ -1,1 +1,1 @@
-## afroguzo.com Agency
+## afroguzo.com
