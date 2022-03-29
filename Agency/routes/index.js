@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const mysql = require("mysql")
+const mysql = require("mysql2")
 const connection = require('../database/dbconnection');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
@@ -114,12 +114,6 @@ router.post('/register', async (req, res, next) => {
     }
 
    
-}) // end of router.post
-
-router.post('/application_form', async (req, res) => {
-
-    console.log('from application form router')
-    console.log(req.body)
 }) // end of router.post
 
 module.exports = router;
