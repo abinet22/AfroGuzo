@@ -40,6 +40,17 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: "cascade" 
         });
 
+        Agency.hasMany(models.ApplicantExtraInfo, {
+            // deletes all applications created by this user 
+            onDelete: "cascade" 
+        });
+
+        Agency.hasMany(models.File, {
+            // deletes all applications created by this user 
+            onDelete: "cascade" 
+        });
+
+
         // Agency has one to one relation with Profile
         Agency.hasOne(models.Profile, {
             // deletes all applications created by this user 
