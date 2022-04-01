@@ -1,8 +1,12 @@
 {
   "development": {
-    "username": "nahi",
+    "username": "abi",
     "password": "password",
     "database": "afroguzo",
+<<<<<<< HEAD
+    "host": "localhost",
+    "dialect": "mysql"
+=======
     "host": "127.0.0.1",
     "dialect": "mysql",
     "pool": {
@@ -12,6 +16,7 @@
       "idle": 10000
     }
 
+>>>>>>> 171c837f437c9e4ff4d47088c86f80fdff7d1234
   },
   "test": {
     "username": "root",
