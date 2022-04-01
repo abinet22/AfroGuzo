@@ -9,8 +9,7 @@ height: 100%
 }
 
 #grad1 {
-background-color:  #4038b4;
-background-image: linear-gradient(120deg, #415f9e, #222dc5)
+
 }
 
 #msform {
@@ -80,7 +79,7 @@ outline-width: 0
 
 #msform .action-button {
 width: 100px;
-background: skyblue;
+background: #222dc5;
 font-weight: bold;
 color: white;
 border: 0 none;
@@ -123,19 +122,19 @@ margin: 10px 5px
 
 #msform .action-button-close:hover,
 #msform .action-button-close:focus {
-box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue
+box-shadow: 0 0 0 2px white, 0 0 0 3px #222dc5
 }
 
 
 
 #msform .action-button:hover,
 #msform .action-button:focus {
-box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue
+box-shadow: 0 0 0 2px white, 0 0 0 3px #222dc5
 }
 
 #msform .action-button-previous {
 width: 100px;
-background: #616161;
+background: #222dc5;
 font-weight: bold;
 color: white;
 border: 0 none;
@@ -147,7 +146,7 @@ margin: 10px 5px
 
 #msform .action-button-previous:hover,
 #msform .action-button-previous:focus {
-box-shadow: 0 0 0 2px white, 0 0 0 3px #616161
+box-shadow: 0 0 0 2px white, 0 0 0 3px #222dc5
 }
 
 select.list-dt {
@@ -159,7 +158,7 @@ margin: 2px
 }
 
 select.list-dt:focus {
-border-bottom: 2px solid skyblue
+border-bottom: 2px solid #222dc5
 }
 
 .card {
@@ -265,7 +264,7 @@ z-index: -1
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-background: skyblue
+background: #222dc5
 }
 
 .radio-group {
