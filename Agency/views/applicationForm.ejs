@@ -22,6 +22,31 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="/css/step_form.css" rel="stylesheet" type="text/css">
+    <style>
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+    #img-upload{
+        width: 100%;
+    }
+    </style>
 
 </head>
 
@@ -1320,12 +1345,28 @@
                                                     <button type="button" name="previous" class="previous action-button-previous">Previous</button> 
                                                     <button type="submit" name="submit" class="next action-button">Submit</button>
                                                 </fieldset>
-                                                <fieldset id="photo">
+                                                <fieldset id="photos">
                                                     <div class="form-card">
                                                         <h2 class="fs-title">Upload Photo</h2>
-                                                        <br>
-                                                        // TODO: Upload photo based on diffrent size - save it the file system and it's name or id and 
-                                                        // file type of data base / or save it on the data base. 
+
+                                                        <div class="container">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Upload Image</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-btn">
+                                                                            <span class="btn btn-default btn-file">
+                                                                                Browse… <input type="file" id="imgInp">
+                                                                            </span>
+                                                                        </span>
+                                                                        <input type="text" class="form-control" readonly>
+                                                                    </div>
+                                                                    <img id='img-upload'/>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        <!-- // TODO: Upload photo based on diffrent size - save it the file system and it's name or id and 
+                                                        // file type of data base / or save it on the data base.  -->
                                                     </div>
                                                     <button type="button" name="previous" class="previous action-button-previous">Previous</button> 
                                                     <button type="submit" name="submit" class="next action-button">Submit</button>
@@ -1423,6 +1464,7 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/new-application.js"></script>
+    
     
     <script type="text/javascript">
        

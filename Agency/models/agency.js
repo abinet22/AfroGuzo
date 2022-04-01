@@ -50,7 +50,6 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: "cascade" 
         });
 
-
         // Agency has one to one relation with Profile
         Agency.hasOne(models.Profile, {
             // deletes all applications created by this user 
