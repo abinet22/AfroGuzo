@@ -3,21 +3,45 @@
     "username": "abi",
     "password": "password",
     "database": "afroguzo",
+<<<<<<< HEAD
     "host": "localhost",
     "dialect": "mysql"
+=======
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+
+>>>>>>> 171c837f437c9e4ff4d47088c86f80fdff7d1234
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
   }
 }

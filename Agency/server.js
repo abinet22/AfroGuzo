@@ -98,8 +98,8 @@ const applicationRoutes = require("./routes/application");
 app.use('/api/applications', applicationRoutes);
 
 // initialize our app
-db.sequelize.sync().then(() => {
+db.sequelize.sync({force: true}).then(() => {
   app.listen(PORT, () => {
     console.log(`listening at: http://localhost:${PORT}`)
-  })
-})
+  });
+});
