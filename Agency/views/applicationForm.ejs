@@ -20,34 +20,189 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="/css/step_form.css" rel="stylesheet" type="text/css">
-    <style>
-    .btn-file {
-        position: relative;
-        overflow: hidden;
-    }
-    .btn-file input[type=file] {
-        position: absolute;
-        top: 0;
-        right: 0;
-        min-width: 100%;
-        min-height: 100%;
-        font-size: 100px;
-        text-align: right;
-        filter: alpha(opacity=0);
-        opacity: 0;
-        outline: none;
-        background: white;
-        cursor: inherit;
-        display: block;
-    }
+    <!-- <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.css"
+    /> -->
 
-    #img-upload{
-        width: 100%;
-    }
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css'>
+
+    <style>
+        .container-upload{
+  margin-left:auto;
+  margin-right:auto;  
+  margin-top:calc(calc(100vh - 405px)/2);
+}
+#form1{
+  width:auto;
+}
+.alert{
+  text-align:center;
+}
+
+#preview{  
+  max-height:256px;
+  height:auto;
+  width:auto;
+  display:block;
+  margin-left: auto;
+   margin-right: auto;
+  padding:5px;
+}
+#img_container{
+  border-radius:5px;
+  margin-top:20px;
+  width:auto;  
+}
+.input-group{  
+  margin-left:calc(calc(100vw - 100%)/2);
+  margin-top:40px;
+  width:320px;
+}
+.imgInp{  
+  width:150px;
+  margin-top:10px;
+  padding:10px;
+  background-color:#d3d3d3;  
+}
+.loading{
+   animation:blinkingText ease 2.5s infinite;
+}
+@keyframes blinkingText{
+    0%{     color: #000;    }     
+    50%{   color: transparent; }
+    99%{    color:transparent;  }
+    100%{ color:#000; }
+}
+.custom-file-label{
+  cursor:pointer;
+}
     </style>
 
+    <style>
+        /* .custom-file-container {
+            max-width: 400px;
+            margin: 0 auto;
+            }
+        #previewImg {
+            max-width: 500px;
+            margin: 0 auto;
+            max-height: 400px;
+        } */
+
+        /*just bg and body style*/
+.custom-file-container {
+background-color:white;
+padding-bottom:20px;
+margin-top:10px;
+border-radius:5px;
+}
+#previewImg {
+max-width: 400px;
+margin: 0 auto;
+max-height: 300px;
+}
+
+.center{
+text-align:center;  
+}
+#top{
+margin-top:20px;  
+}
+.upload_btn_container{
+max-width: 100px;
+max-height: 100px;
+background:#fff;
+border-radius:5px;
+padding-bottom:20px;
+margin-bottom:20px;
+}
+.white{
+color:white;
+}
+.imgupload{
+color:#1E2832;
+padding-top:40px;
+font-size:7em;
+}
+#namefile{
+color:black;
+}
+h4>strong{
+color:#ff3f3f
+}
+/* .btn-primary-up{
+border-color: #f2eeee !important;
+color: #1450cf;
+text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+background-color: #ff3f3f !important;
+border-color: #ff3f3f !important;
+} */
+
+/*these two are set to not display at start*/
+.imgupload.ok{
+display:none;
+color:green;
+}
+.imgupload.stop{
+display:none;
+color:red;
+}
+
+
+/*this sets the actual file input to overlay our button*/ 
+#fileup{
+/* opacity: 0;
+-moz-opacity: 0;
+filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0); */
+width:200px;
+cursor: pointer;
+position:absolute;
+left: 50%;
+transform: translateX(-50%);
+bottom: 40px;
+height: 50px;
+}
+
+.btn-primary-up {
+  background-color: #1414d3; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/*switch between input and not active input*/
+/* #submitbtn{
+  padding:5px 50px;
+  display:none;
+}
+#fakebtn{
+  padding:5px 40px;
+} */
+
+
+/*www.emilianocostanzo.com*/
+#sign{
+	color:#1E2832;
+	position:fixed;
+	right:10px;
+	bottom:10px;
+	text-shadow:0px 0px 0px #1E2832;
+	transition: 3s;
+}
+#sign:hover{
+	color:#1E2832;
+	text-shadow:0px 0px 5px #1E2832;
+}
+    </style>
 </head>
 
 <body id="page-top">
@@ -1346,28 +1501,27 @@
                                                     <button type="submit" name="submit" class="next action-button">Submit</button>
                                                 </fieldset>
                                                 <fieldset id="photos">
-                                                    <div class="form-card">
-                                                        <h2 class="fs-title">Upload Photo</h2>
 
-                                                        <div class="container">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label>Upload Image</label>
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-btn">
-                                                                            <span class="btn btn-default btn-file">
-                                                                                Browse… <input type="file" id="imgInp">
-                                                                            </span>
-                                                                        </span>
-                                                                        <input type="text" class="form-control" readonly>
-                                                                    </div>
-                                                                    <img id='img-upload'/>
-                                                                </div>
-                                                            </div>
-                                                            </div>
-                                                        <!-- // TODO: Upload photo based on diffrent size - save it the file system and it's name or id and 
+                                                   
+                                                    
+                                                    <!-- 
+                                                   <div class="custom-file-container">
+                                                        <p>
+                                                            <input type="file" name="200*200" id="200*200" onchange="previewFile(this);" required>
+                                                        </p>
+                                                        <img id="previewImg" src="/img/image_icon.png" alt="Placeholder">
+                                                        <br>
+                                                        
+                                                        <button type="button" name="upload" class="action-button" >Upload</button>
+                                                            <input type="submit" value="Upload">
+                                                      
+
+                                                   </div> -->
+
+
+                                                    <!-- // TODO: Upload photo based on diffrent size - save it the file system and it's name or id and 
                                                         // file type of data base / or save it on the data base.  -->
-                                                    </div>
+                                                   
                                                     <button type="button" name="previous" class="previous action-button-previous">Previous</button> 
                                                     <button type="submit" name="submit" class="next action-button">Submit</button>
                                                 </fieldset>
@@ -1407,6 +1561,54 @@
                 </div>
                 <!-- /.container-fluid -->
 
+                <div class="row card-body">
+                <div class="col-md-12 mx-0">
+                    <div class="custom-file-container center">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="black">Photo Upload</h1>
+                                <h3 class="black">Only pics allowed! (jpg,jpeg,bmp,png)</h3>
+                            </div>
+                        </div>
+                        
+                    
+                            <div class="row">
+                                <div class="col-md-6 center">
+                                    <div class="upload_btn_container">
+                                        <!--the three icons: default, ok file (img), error file (not an img)-->
+                                        <!-- <h1 class="imgupload"><i class="fa fa-file-image-o"></i></h1> -->
+                                        <h1 class="imgupload ok"><i class="fa fa-check"></i></h1>
+                                        <h1 class="imgupload stop"><i class="fa fa-times"></i></h1>
+                                        <!--this field changes dinamically displaying the filename we are trying to upload-->
+                                        <p id="namefile"></p>
+                                        <!--our custom btn which which stays under the actual one-->
+                                        <button onclick="uploadPhotos()" id="uploadBtn" class="btn btn-primary-up btn-sm">Select 200*200 Photo</button>
+
+                                        <!-- <button type="button" id="btnup" class="btn btn-primary btn-lg">Browse for your pic!</button> -->
+                                        <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
+                                        <!-- <input type="file" value="upload" name="fileup" id="fileup"> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <img id="previewImg" name="200*200" src="/img/image_icon.png" alt="200 * 200 image" hidden="hidden">
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+                </div>
+
+                <div class="container-upload animated bounce">
+                    <form id="form1" runat="server">
+                        <div class="alert"></div>
+                        <div id='img_container'><img id="preview" src="https://webdevtrick.com/wp-content/uploads/preview-img.jpg" alt="your image" title=''/></div> 
+                        <div class="input-group"> 
+                        <div class="custom-file">
+                        <input type="file" id="inputGroupFile01" class="imgInp custom-file-input" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                      </div>
+                    </div>
+            
             </div>
             <!-- End of Main Content -->
 
@@ -1451,6 +1653,7 @@
         </div>
     </div>
 
+    
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -1465,9 +1668,165 @@
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/new-application.js"></script>
     
-    
-    <script type="text/javascript">
-       
+    <script src="js/file-upload-with-preview.min.js"></script>
+
+    <script>
+
+        var photos = [];
+
+        function uploadPhotos() {
+                let input = document.createElement('input');
+                input.type = 'file';
+                input.onchange = _ => {
+                    // you can use this method to get file and perform respective operations
+                        let files =   Array.from(input.files);
+                        console.log('file is');
+                        console.log(files);
+                        // console.log('input.val is');
+                        // console.log(fil)
+
+                        console.log('files[0] is');
+                        console.log(files[0].name)
+                        console.log('file type');
+                        console.log(files[0].type)
+
+                        //here we take the file extension and set an array of valid extensions
+                        // var res = files[0].name
+                        // var arr = res.split("\\");
+                        var filename = files[0].name;
+                        filextension = filename.split(".");
+                        filext = "."+filextension.slice(-1)[0];
+                        filetype= files[0].type.split('/')[0];
+                    //if file is not valid we show the error icon, the red alert, and hide the submit button
+                        if (filetype != 'image'){
+                            $( ".imgupload.ok" ).hide("slow");
+                            $( ".imgupload.stop" ).show("slow");
+                        
+                            $('#namefile').css({"color":"red","font-weight":700});
+                            $('#namefile').html("File "+filename+" is not  pic!");
+                            
+                            $( "#submitbtn" ).hide();
+                            $( "#fakebtn" ).show();
+                        }else{
+                            //if file is valid we show the green alert and show the valid submit
+                            $( ".imgupload.stop" ).hide("slow");
+                            $( ".imgupload.ok" ).show("slow");
+                        
+                            $('#namefile').css({"color":"green","font-weight":700});
+                            $('#namefile').html(filename);
+                           
+                            var previewImage =document.getElementById("previewImg");
+                            previewImage.removeAttribute('hidden')
+
+                            var reader = new FileReader();
+     
+                            reader.onload = function(e){
+                                $("#previewImg").attr("src", e.target.result);
+                            }
+
+                            reader.readAsDataURL(input.files[0]);
+                           
+                            
+                            photos.push(files);
+                        }
+
+                        console.log('number of uploaded photos')
+                        console.log(photos.length);
+                            
+                        };
+
+                input.click();
+                
+        }
+
+
+        // function uploadPhoto(input){
+        //     var file = $("input[type=file]").get(0).files[0];
+
+               
+     
+        //     if(file){
+        //         var reader = new FileReader();
+     
+        //         reader.onload = function(){
+        //             $("#previewImg").attr("src", reader.result);
+        //         }
+     
+        //         reader.readAsDataURL(file);
+        //     }
+        // }
+
+        // Code By Webdevtrick ( https://webdevtrick.com )
+$("#inputGroupFile01").change(function(event) {  
+  RecurFadeIn();
+  readURL(this);    
+});
+$("#inputGroupFile01").on('click',function(event){
+  RecurFadeIn();
+});
+function readURL(input) {    
+  if (input.files && input.files[0]) {   
+    var reader = new FileReader();
+    var filename = $("#inputGroupFile01").val();
+    filename = filename.substring(filename.lastIndexOf('\\')+1);
+    reader.onload = function(e) {
+    //   debugger;      
+      $('#preview').attr('src', e.target.result);
+      $('#preview').hide();
+      $('#preview').fadeIn(500);      
+      $('.custom-file-label').text(filename);             
+    }
+    reader.readAsDataURL(input.files[0]);    
+  } 
+  $(".alert").removeClass("loading").hide();
+}
+function RecurFadeIn(){ 
+  console.log('ran');
+  FadeInAlert("Wait for it...");  
+}
+function FadeInAlert(text){
+  $(".alert").show();
+  $(".alert").text(text).addClass("loading");  
+}
+
+        function storeDB () {
+
+
+        }
+
+        // $('#fileup').change(function(){
+        // //here we take the file extension and set an array of valid extensions
+        //     var res=$('#fileup').val();
+        //     var arr = res.split("\\");
+        //     var filename=arr.slice(-1)[0];
+        //     filextension=filename.split(".");
+        //     filext="."+filextension.slice(-1)[0];
+        //     valid=[".jpg",".png",".jpeg",".bmp"];
+        // //if file is not valid we show the error icon, the red alert, and hide the submit button
+        //     if (valid.indexOf(filext.toLowerCase())==-1){
+        //         $( ".imgupload" ).hide("slow");
+        //         $( ".imgupload.ok" ).hide("slow");
+        //         $( ".imgupload.stop" ).show("slow");
+            
+        //         $('#namefile').css({"color":"red","font-weight":700});
+        //         $('#namefile').html("File "+filename+" is not  pic!");
+                
+        //         $( "#submitbtn" ).hide();
+        //         $( "#fakebtn" ).show();
+        //     }else{
+        //         //if file is valid we show the green alert and show the valid submit
+        //         $( ".imgupload" ).hide("slow");
+        //         $( ".imgupload.stop" ).hide("slow");
+        //         $( ".imgupload.ok" ).show("slow");
+            
+        //         $('#namefile').css({"color":"green","font-weight":700});
+        //         $('#namefile').html(filename);
+            
+        //         $( "#submitbtn" ).show();
+        //         $( "#fakebtn" ).hide();
+        //     }
+        // });
+        
     </script>
     <!-- End custom js for this page-->
 
