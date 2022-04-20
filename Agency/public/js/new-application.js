@@ -112,6 +112,8 @@ $(document).ready(function(){
     reader.readAsDataURL(this.files[0]);
     });
 
+
+
     // $(document).on('change', '.btn-file :file', function() {
 	// 	var input = $(this),
 	// 		label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
@@ -225,4 +227,5 @@ $(document).ready(function(){
         
     // })
 
-    });
+    
+});

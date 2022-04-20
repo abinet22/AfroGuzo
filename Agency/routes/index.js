@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require("mysql2")
-const connection = require('../database/dbconnection');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { v4: uuidv4 } = require('uuid');

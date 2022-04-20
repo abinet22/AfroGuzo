@@ -14,6 +14,7 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, {
     dialect: config.dialect,
+    logging: false,
     pool: {
       max: config.pool.max,
       min: config.pool.min,

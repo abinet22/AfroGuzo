@@ -7,7 +7,6 @@ const session = require('express-session');
 const ejs = require("ejs");
 const path = require('path');
 const cors = require("cors");
-const connection = require('./database/dbconnection');
 const PORT = process.env.PORT || 5005
 const db = require("./models")
 
@@ -97,10 +96,16 @@ app.use('/api/profiles', profileRoutes );
 const applicationRoutes = require("./routes/application");
 app.use('/api/applications', applicationRoutes);
 
+const uploadPhoto = require("./routes/upload");
+app.use('/api/img', uploadPhoto);
+
 // initialize our app
 // {force: true}
 db.sequelize.sync().then(() => {
-  app.listen(PORT, () => {
-    console.log(`listening at: http://localhost:${PORT}`)
-  });
+ 
+});
+
+
+app.listen(PORT, () => {
+  console.log(`listening at: http://localhost:${PORT}`)
 });
